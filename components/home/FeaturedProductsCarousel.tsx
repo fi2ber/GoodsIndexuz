@@ -179,6 +179,7 @@ export function FeaturedProductsCarousel({ products, locale }: FeaturedProductsC
             {products.map((product, index) => {
               const productName = locale === "ru" ? product.name_ru : product.name_en;
               const categoryName = locale === "ru" ? product.categories.name_ru : product.categories.name_en;
+              const origin = locale === "ru" ? product.origin_ru : product.origin_en;
               const images = Array.isArray(product.image_urls)
                 ? product.image_urls.filter((url): url is string => typeof url === "string")
                 : [];
@@ -190,6 +191,7 @@ export function FeaturedProductsCarousel({ products, locale }: FeaturedProductsC
                   product={product}
                   productName={productName}
                   categoryName={categoryName}
+                  origin={origin}
                   mainImage={mainImage}
                   locale={locale}
                   index={index}
@@ -253,6 +255,7 @@ interface ProductCardProps {
   product: Product;
   productName: string;
   categoryName: string;
+  origin: string | null | undefined;
   mainImage: string | undefined;
   locale: Locale;
   index: number;
@@ -266,6 +269,7 @@ function ProductCard({
   product,
   productName,
   categoryName,
+  origin,
   mainImage,
   locale,
   index,
@@ -337,16 +341,16 @@ function ProductCard({
 
         <CardContent className="p-6 pt-0 flex-1 flex flex-col justify-end">
           {/* Quick specs */}
-          {(product.moq || product.origin) && (
+          {(product.moq || origin) && (
             <div className="flex flex-wrap gap-2 mb-4">
               {product.moq && (
                 <span className="text-xs bg-muted px-2.5 py-1 rounded-full text-muted-foreground">
                   MOQ: {product.moq}
                 </span>
               )}
-              {product.origin && (
+              {origin && (
                 <span className="text-xs bg-muted px-2.5 py-1 rounded-full text-muted-foreground">
-                  {product.origin}
+                  {origin}
                 </span>
               )}
             </div>
