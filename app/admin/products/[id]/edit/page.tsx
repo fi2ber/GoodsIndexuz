@@ -22,48 +22,32 @@ export default async function EditProductPage({
     notFound();
   }
 
-  // Убеждаемся, что image_urls правильно парсится как массив строк
-  let imageUrls: string[] = [];
-  if (product.image_urls) {
-    let parsedImages = product.image_urls;
-    if (typeof parsedImages === 'string') {
+  // Убеждаемся, что все JSONB поля правильно парсятся
+  const parseJsonField = (field: any, defaultValue: any) => {
+    if (!field) return defaultValue;
+    if (typeof field === 'string') {
       try {
-        parsedImages = JSON.parse(parsedImages);
+        return JSON.parse(field);
       } catch {
-        parsedImages = [];
+        return defaultValue;
       }
     }
-    
-    if (Array.isArray(parsedImages)) {
-      imageUrls = parsedImages.filter((url): url is string => typeof url === 'string');
-    }
-  }
+    return Array.isArray(field) || (typeof field === 'object' && field !== null) ? field : defaultValue;
+  };
 
-  // Убеждаемся, что calibers правильно парсится как массив строк
-  let caliberList: string[] = [];
-  if (product.calibers) {
-    let parsedCalibers = product.calibers;
-    if (typeof parsedCalibers === 'string') {
-      try {
-        parsedCalibers = JSON.parse(parsedCalibers);
-      } catch {
-        parsedCalibers = [];
-      }
-    }
-    
-    if (Array.isArray(parsedCalibers)) {
-      caliberList = parsedCalibers.filter((caliber): caliber is string => typeof caliber === 'string');
-    }
-  }
-
-  const categories = await getAllCategories();
-
-  // Create a clean product object for the form
   const cleanProduct = {
     ...product,
-    image_urls: imageUrls,
-    calibers: caliberList,
+    image_urls: parseJsonField(product.image_urls, []),
+    calibers: parseJsonField(product.calibers, []),
+    certificates_ru: parseJsonField(product.certificates_ru, []),
+    certificates_en: parseJsonField(product.certificates_en, []),
+    seasonality: parseJsonField(product.seasonality, []),
+    faqs_ru: parseJsonField(product.faqs_ru, []),
+    faqs_en: parseJsonField(product.faqs_en, []),
+    packaging_options: parseJsonField(product.packaging_options, []),
   };
+
+  const categories = await getAllCategories();
 
   return (
     <div className="space-y-8">

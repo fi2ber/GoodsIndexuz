@@ -205,6 +205,7 @@ export default async function ProductPage({
           hs_code: product.hs_code,
           moq: product.moq,
           slug: product.slug,
+          view_count: product.view_count,
         }}
         locale={locale}
         baseUrl={baseUrl}

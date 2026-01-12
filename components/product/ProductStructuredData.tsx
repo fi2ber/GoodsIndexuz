@@ -17,6 +17,7 @@ interface ProductStructuredDataProps {
     hs_code?: string | null;
     moq?: string | null;
     slug: string;
+    view_count?: number;
   };
   locale: "ru" | "en";
   baseUrl: string;
