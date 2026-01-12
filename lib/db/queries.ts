@@ -533,11 +533,14 @@ function normalizeSubmissionArrays(submission: ProductSubmission): void {
         submission.images = JSON.parse(submission.images);
       } catch {
         submission.images = [];
+        return;
       }
     } else if (!Array.isArray(submission.images)) {
       submission.images = [];
     }
-    submission.images = submission.images.filter((url): url is string => typeof url === 'string');
+    if (Array.isArray(submission.images)) {
+      submission.images = submission.images.filter((url): url is string => typeof url === 'string');
+    }
   } else {
     submission.images = [];
   }
@@ -549,11 +552,14 @@ function normalizeSubmissionArrays(submission: ProductSubmission): void {
         submission.certificates = JSON.parse(submission.certificates);
       } catch {
         submission.certificates = [];
+        return;
       }
     } else if (!Array.isArray(submission.certificates)) {
       submission.certificates = [];
     }
-    submission.certificates = submission.certificates.filter((url): url is string => typeof url === 'string');
+    if (Array.isArray(submission.certificates)) {
+      submission.certificates = submission.certificates.filter((url): url is string => typeof url === 'string');
+    }
   } else {
     submission.certificates = [];
   }
@@ -565,11 +571,14 @@ function normalizeSubmissionArrays(submission: ProductSubmission): void {
         submission.calibers = JSON.parse(submission.calibers);
       } catch {
         submission.calibers = [];
+        return;
       }
     } else if (!Array.isArray(submission.calibers)) {
       submission.calibers = [];
     }
-    submission.calibers = submission.calibers.filter((caliber): caliber is string => typeof caliber === 'string');
+    if (Array.isArray(submission.calibers)) {
+      submission.calibers = submission.calibers.filter((caliber): caliber is string => typeof caliber === 'string');
+    }
   } else {
     submission.calibers = [];
   }
@@ -581,11 +590,14 @@ function normalizeSubmissionArrays(submission: ProductSubmission): void {
         submission.packaging_options = JSON.parse(submission.packaging_options);
       } catch {
         submission.packaging_options = [];
+        return;
       }
     } else if (!Array.isArray(submission.packaging_options)) {
       submission.packaging_options = [];
     }
-    submission.packaging_options = submission.packaging_options.filter((opt): opt is string => typeof opt === 'string');
+    if (Array.isArray(submission.packaging_options)) {
+      submission.packaging_options = submission.packaging_options.filter((opt): opt is string => typeof opt === 'string');
+    }
   } else {
     submission.packaging_options = [];
   }
