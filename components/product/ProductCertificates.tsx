@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslation } from "@/lib/i18n/translations";
 
-interface Certificate {
+export interface Certificate {
   name: string;
   image_url: string;
   id?: string;

@@ -87,15 +87,15 @@ export function FeaturedProductsCarousel({ products, locale }: FeaturedProductsC
     snapToIndex(newIndex);
   };
 
-  const goToPrev = () => {
+  const goToPrev = useCallback(() => {
     const newIndex = Math.max(0, activeIndex - 1);
     snapToIndex(newIndex);
-  };
+  }, [activeIndex, snapToIndex]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     const newIndex = Math.min(products.length - 1, activeIndex + 1);
     snapToIndex(newIndex);
-  };
+  }, [activeIndex, products.length, snapToIndex]);
 
   // Keyboard navigation
   useEffect(() => {

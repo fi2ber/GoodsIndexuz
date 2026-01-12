@@ -17,7 +17,7 @@ import { StickyInquiryCTA } from "@/components/product/StickyInquiryCTA";
 import { ProductImageGallery } from "@/components/product/ProductImageGallery";
 import { ProductQuickActions } from "@/components/product/ProductQuickActions";
 import { ProductSeasonality } from "@/components/product/ProductSeasonality";
-import { ProductCertificates } from "@/components/product/ProductCertificates";
+import { ProductCertificates, type Certificate } from "@/components/product/ProductCertificates";
 import { ProductLogisticsInfo } from "@/components/product/ProductLogisticsInfo";
 import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { ProductStructuredData } from "@/components/product/ProductStructuredData";
@@ -145,9 +145,9 @@ export default async function ProductPage({
     : [];
   
   // Новые поля
-  const certificates = locale === "ru" 
+  const certificates = (locale === "ru" 
     ? (Array.isArray(product.certificates_ru) ? product.certificates_ru : [])
-    : (Array.isArray(product.certificates_en) ? product.certificates_en : []);
+    : (Array.isArray(product.certificates_en) ? product.certificates_en : [])) as unknown as Certificate[];
   const seasonality = Array.isArray(product.seasonality) 
     ? product.seasonality.filter((m): m is number => typeof m === 'number' && m >= 1 && m <= 12)
     : [];
