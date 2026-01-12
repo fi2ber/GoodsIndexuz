@@ -103,7 +103,7 @@ export async function PUT(
     console.log("Saving image_urls to DB:", imageUrlsJson);
 
     // Ensure is_featured is a boolean
-    const isFeatured = validated.is_featured === true || validated.is_featured === "true" || validated.is_featured === 1;
+    const isFeatured = !!validated.is_featured;
     console.log("Final is_featured value:", isFeatured);
 
     // Prepare JSON values for logistics_info fields
