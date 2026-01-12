@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import { sql } from "@/lib/db/connection";
 import { getAllCategories } from "@/lib/db/queries";
 import { ProductForm } from "@/components/admin/ProductForm";
+import type { Database } from "@/types/database";
+
+type Product = Database["public"]["Tables"]["products"]["Row"];
 
 export default async function EditProductPage({
   params,
@@ -9,7 +12,7 @@ export default async function EditProductPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [product] = await sql`
+  const [product] = await sql<Product[]>`
     SELECT * FROM products
     WHERE id = ${id}
     LIMIT 1

@@ -22,9 +22,9 @@ export default async function SubmissionDetailPage({
   }
 
   // Get category info
-  let category = null;
+  let category: { id: string; name_en: string; name_ru: string } | null = null;
   if (submission.category_id) {
-    const [cat] = await sql`
+    const [cat] = await sql<Array<{ id: string; name_en: string; name_ru: string }>>`
       SELECT id, name_en, name_ru FROM categories WHERE id = ${submission.category_id}
     `;
     category = cat || null;

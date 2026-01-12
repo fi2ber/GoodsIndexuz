@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import { sql } from "@/lib/db/connection";
 import { ManagerForm } from "@/components/admin/ManagerForm";
+import type { Database } from "@/types/database";
+
+type Manager = Database["public"]["Tables"]["managers"]["Row"];
 
 export default async function EditManagerPage({
   params,
@@ -8,7 +11,7 @@ export default async function EditManagerPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [manager] = await sql`
+  const [manager] = await sql<Manager[]>`
     SELECT * FROM managers
     WHERE id = ${id}
     LIMIT 1
