@@ -16,12 +16,16 @@ function normalizeImageUrls(product: Product): void {
         product.image_urls = JSON.parse(product.image_urls);
       } catch {
         product.image_urls = [];
+        return;
       }
     } else if (!Array.isArray(product.image_urls)) {
       product.image_urls = [];
+      return;
     }
     // Фильтруем только строки
-    product.image_urls = product.image_urls.filter((url): url is string => typeof url === 'string');
+    if (Array.isArray(product.image_urls)) {
+      product.image_urls = product.image_urls.filter((url): url is string => typeof url === 'string');
+    }
   } else {
     product.image_urls = [];
   }
@@ -37,12 +41,16 @@ function normalizeCalibers(product: Product): void {
         product.calibers = JSON.parse(product.calibers);
       } catch {
         product.calibers = [];
+        return;
       }
     } else if (!Array.isArray(product.calibers)) {
       product.calibers = [];
+      return;
     }
     // Фильтруем только строки
-    product.calibers = product.calibers.filter((caliber): caliber is string => typeof caliber === 'string');
+    if (Array.isArray(product.calibers)) {
+      product.calibers = product.calibers.filter((caliber): caliber is string => typeof caliber === 'string');
+    }
   } else {
     product.calibers = [];
   }
