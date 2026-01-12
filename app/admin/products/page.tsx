@@ -558,7 +558,7 @@ export default function AdminProductsPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will delete the product "{productToDelete?.name_en || productToDelete?.name_ru}". This action cannot be undone.
+              This will delete the product &quot;{productToDelete?.name_en || productToDelete?.name_ru}&quot;. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -105,7 +105,7 @@ export function FeaturedProductsCarousel({ products, locale }: FeaturedProductsC
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeIndex]);
+  }, [goToPrev, goToNext]);
 
   if (products.length === 0) {
     return null;

@@ -457,7 +457,7 @@ export function ProductSubmissionForm({ categories, locale, onSubmit }: ProductS
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Contact Information</h3>
           <p className="text-sm text-muted-foreground">
-            We'll contact you via WhatsApp/Telegram
+            We&apos;ll contact you via WhatsApp/Telegram
           </p>
 
           <div>

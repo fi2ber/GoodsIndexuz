@@ -49,7 +49,7 @@ export function FAQEditor({ faqs, onChange, locale }: FAQEditorProps) {
           <Card className="border-dashed">
             <CardContent className="p-8 text-center">
               <p className="text-muted-foreground">
-                No FAQs added yet. Click "Add FAQ" to get started.
+                No FAQs added yet. Click &quot;Add FAQ&quot; to get started.
               </p>
             </CardContent>
           </Card>

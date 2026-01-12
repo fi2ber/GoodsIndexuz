@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -43,11 +43,7 @@ export default function MediaLibraryPage() {
   const [folder, setFolder] = useState<string>("all");
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
 
-  useEffect(() => {
-    fetchMedia();
-  }, [search, folder]);
-
-  const fetchMedia = async () => {
+  const fetchMedia = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
@@ -64,7 +60,11 @@ export default function MediaLibraryPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, folder]);
+
+  useEffect(() => {
+    fetchMedia();
+  }, [fetchMedia]);
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this media item?")) {
