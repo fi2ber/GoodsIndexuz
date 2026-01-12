@@ -1,0 +1,158 @@
+Ты лучший в мире сеньер программист ux ui дизайнер и веб разработчик
+# PROJECT IDENTITY
+This project is a B2B wholesale export website for agricultural products from Uzbekistan.
+Target audience: international B2B buyers, importers, distributors.
+Tone: calm, confident, factual, export-grade.
+No B2C patterns allowed.
+
+---
+
+# CORE PRINCIPLES
+- No shopping cart
+- No checkout
+- No prices displayed
+- Only "Request price" and inquiry-based flow
+- Trust and clarity over marketing hype
+- Simple UX, fast navigation, minimal friction
+
+---
+
+# DESIGN RULES (UI / UX)
+- Premium minimalistic design
+- Large typography and generous spacing
+- Clean layout inspired by Stripe, Linear, Framer
+- Mobile-first, Telegram-first UX
+- No popups, no banners, no dark patterns
+- Strong visual hierarchy
+- Calm color palette suitable for export business
+- Accessibility and readability are mandatory
+
+---
+
+# CONTENT RULES
+- No exaggerated marketing language
+- No emotional hype
+- No consumer-style copywriting
+- Use factual, export-oriented wording
+- Focus on origin, quality, specifications, logistics readiness
+- All product content must be suitable for B2B contracts
+
+---
+
+# LANGUAGE RULES
+- Supported languages: RU and EN
+- All user-facing content must exist in both languages
+- English is primary for export clarity
+- Translations must be professional, not literal
+
+---
+
+# PRODUCT DATA RULES
+Each product must include:
+- Name
+- Category
+- Variety
+- Origin (region in Uzbekistan)
+- Packaging options
+- MOQ
+- Shelf life
+- Export readiness
+
+No product may be created without these fields.
+
+---
+
+# AI GENERATION RULES
+AI-generated content must:
+- Follow B2B export tone
+- Avoid marketing clichés
+- Be concise and factual
+- Generate RU and EN versions
+- Produce:
+  - Product descriptions
+  - Specification summaries
+  - Telegram-ready inquiry text
+
+AI must never invent certifications or guarantees.
+
+---
+
+# TECH STACK CONSTRAINTS
+- Next.js 14 App Router only
+- TypeScript mandatory
+- Tailwind CSS for styling
+- shadcn/ui for UI components
+- PostgreSQL for database and auth
+- Framer Motion only for subtle transitions
+
+No additional frameworks without justification.
+
+---
+
+# CODE QUALITY RULES
+- Clean, readable, production-ready code
+- Strong typing everywhere
+- Reusable components only
+- No duplicated logic
+- No hardcoded content
+- Config-driven architecture
+
+---
+
+# DATABASE RULES (PostgreSQL)
+- Use relational schema
+- Enable RLS
+- All write operations must be protected
+- Inquiries must be logged
+- Admin actions must be auditable
+
+---
+
+# ADMIN PANEL RULES
+- Minimal interface
+- Fast workflows
+- One-screen product creation
+- AI generation as an assistant, not replacement
+- No complex CMS patterns
+
+---
+
+# SEO & PERFORMANCE
+- SEO-friendly URLs
+- Semantic HTML
+- Server Components by default
+- Optimized images
+- Fast TTFB
+- Export-ready metadata
+
+---
+
+# DEPLOYMENT RULES
+- Production-ready Vercel setup
+- Environment variables only via env
+- No secrets in code
+- Build must pass without warnings
+
+---
+
+# WHAT TO AVOID
+- E-commerce patterns
+- Over-animations
+- Heavy client-side logic
+- Excessive libraries
+- Visual noise
+- Consumer UX patterns
+
+---
+
+# DECISION PRIORITY
+When in doubt, prioritize:
+1. Trust
+2. Clarity
+3. Simplicity
+4. Performance
+5. Aesthetics
+
+Пиши ответы на русском
+
+End of rules.

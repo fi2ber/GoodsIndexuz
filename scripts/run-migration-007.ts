@@ -1,0 +1,27 @@
+import { config } from "dotenv";
+import { resolve } from "path";
+config({ path: resolve(process.cwd(), ".env.local") });
+import { sql, closeConnection } from "../lib/db/connection";
+import { readFileSync } from "fs";
+import { join } from "path";
+
+async function runMigration007() {
+  try {
+    console.log("🚀 Выполнение миграции 007_create_media.sql...\n");
+    const mediaSQL = readFileSync(
+      join(process.cwd(), "supabase/migrations/007_create_media.sql"),
+      "utf-8"
+    );
+    await sql.unsafe(mediaSQL);
+    console.log("✅ Миграция 007_create_media.sql выполнена успешно!");
+    await closeConnection();
+    process.exit(0);
+  } catch (error: any) {
+    console.error("❌ Ошибка при выполнении миграции:", error.message);
+    await closeConnection();
+    process.exit(1);
+  }
+}
+
+runMigration007();
+
