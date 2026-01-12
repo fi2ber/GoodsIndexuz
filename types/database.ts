@@ -15,6 +15,12 @@ export interface Database {
           name_ru: string;
           name_en: string;
           slug: string;
+          description_ru: string | null;
+          description_en: string | null;
+          image_url: string | null;
+          sort_order: number;
+          is_active: boolean;
+          deleted_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -23,6 +29,12 @@ export interface Database {
           name_ru: string;
           name_en: string;
           slug: string;
+          description_ru?: string | null;
+          description_en?: string | null;
+          image_url?: string | null;
+          sort_order?: number;
+          is_active?: boolean;
+          deleted_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -31,6 +43,12 @@ export interface Database {
           name_ru?: string;
           name_en?: string;
           slug?: string;
+          description_ru?: string | null;
+          description_en?: string | null;
+          image_url?: string | null;
+          sort_order?: number;
+          is_active?: boolean;
+          deleted_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };

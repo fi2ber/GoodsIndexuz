@@ -157,6 +157,11 @@ export async function getProducts(categoryIdOrSlug?: string) {
             'name_ru', c.name_ru,
             'name_en', c.name_en,
             'slug', c.slug,
+            'description_ru', c.description_ru,
+            'description_en', c.description_en,
+            'image_url', c.image_url,
+            'sort_order', c.sort_order,
+            'is_active', c.is_active,
             'created_at', c.created_at,
             'updated_at', c.updated_at
           ) as categories
@@ -175,6 +180,11 @@ export async function getProducts(categoryIdOrSlug?: string) {
             'name_ru', c.name_ru,
             'name_en', c.name_en,
             'slug', c.slug,
+            'description_ru', c.description_ru,
+            'description_en', c.description_en,
+            'image_url', c.image_url,
+            'sort_order', c.sort_order,
+            'is_active', c.is_active,
             'created_at', c.created_at,
             'updated_at', c.updated_at
           ) as categories
@@ -193,6 +203,11 @@ export async function getProducts(categoryIdOrSlug?: string) {
           'name_ru', c.name_ru,
           'name_en', c.name_en,
           'slug', c.slug,
+          'description_ru', c.description_ru,
+          'description_en', c.description_en,
+          'image_url', c.image_url,
+          'sort_order', c.sort_order,
+          'is_active', c.is_active,
           'created_at', c.created_at,
           'updated_at', c.updated_at
         ) as categories
@@ -220,6 +235,11 @@ export async function getFeaturedProducts(limit: number = 6) {
         'name_ru', c.name_ru,
         'name_en', c.name_en,
         'slug', c.slug,
+        'description_ru', c.description_ru,
+        'description_en', c.description_en,
+        'image_url', c.image_url,
+        'sort_order', c.sort_order,
+        'is_active', c.is_active,
         'created_at', c.created_at,
         'updated_at', c.updated_at
       ) as categories
@@ -301,6 +321,11 @@ export async function getProductBySlug(slug: string) {
         'name_ru', c.name_ru,
         'name_en', c.name_en,
         'slug', c.slug,
+        'description_ru', c.description_ru,
+        'description_en', c.description_en,
+        'image_url', c.image_url,
+        'sort_order', c.sort_order,
+        'is_active', c.is_active,
         'created_at', c.created_at,
         'updated_at', c.updated_at
       ) as categories
@@ -360,6 +385,11 @@ export async function getAllProducts() {
         'name_ru', c.name_ru,
         'name_en', c.name_en,
         'slug', c.slug,
+        'description_ru', c.description_ru,
+        'description_en', c.description_en,
+        'image_url', c.image_url,
+        'sort_order', c.sort_order,
+        'is_active', c.is_active,
         'created_at', c.created_at,
         'updated_at', c.updated_at
       ) as categories
