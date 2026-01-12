@@ -40,6 +40,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Copy migrations and migration runner
 COPY --from=builder --chown=nextjs:nodejs /app/supabase ./supabase
 COPY --from=builder --chown=nextjs:nodejs /app/scripts/deploy-migrate.js ./scripts/
+# Copy postgres module for migration script
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/postgres ./node_modules/postgres
 
 USER nextjs
 
