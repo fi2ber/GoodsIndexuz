@@ -44,12 +44,12 @@ export default async function SubmissionDetailPage({
     );
   };
 
-  const images = Array.isArray(submission.images) ? submission.images : [];
-  const certificates = Array.isArray(submission.certificates) ? submission.certificates : [];
-  const calibers = Array.isArray(submission.calibers) ? submission.calibers : [];
-  const packagingOptions = Array.isArray(submission.packaging_options)
+  const images = (Array.isArray(submission.images) ? submission.images : []) as string[];
+  const certificates = (Array.isArray(submission.certificates) ? submission.certificates : []) as string[];
+  const calibers = (Array.isArray(submission.calibers) ? submission.calibers : []) as string[];
+  const packagingOptions = (Array.isArray(submission.packaging_options)
     ? submission.packaging_options
-    : [];
+    : []) as string[];
 
   return (
     <div className="space-y-8">
