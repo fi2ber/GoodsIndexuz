@@ -14,6 +14,7 @@ interface CalibersInputProps {
   label?: string;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 export function CalibersInput({
@@ -22,6 +23,7 @@ export function CalibersInput({
   label = "Calibers",
   placeholder = "Enter caliber and press Enter",
   className,
+  disabled = false,
 }: CalibersInputProps) {
   const [inputValue, setInputValue] = useState("");
 
@@ -54,13 +56,14 @@ export function CalibersInput({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="flex-1"
+          disabled={disabled}
         />
         <Button
           type="button"
           variant="outline"
           size="icon"
           onClick={handleAdd}
-          disabled={!inputValue.trim() || calibers.includes(inputValue.trim())}
+          disabled={disabled || !inputValue.trim() || calibers.includes(inputValue.trim())}
         >
           <Plus className="h-4 w-4" />
         </Button>
@@ -79,6 +82,7 @@ export function CalibersInput({
                 onClick={() => handleRemove(index)}
                 className="ml-1 rounded-full hover:bg-destructive/20 p-0.5 transition-colors"
                 aria-label={`Remove ${caliber}`}
+                disabled={disabled}
               >
                 <X className="h-3 w-3" />
               </button>
