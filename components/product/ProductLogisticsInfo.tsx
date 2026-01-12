@@ -6,7 +6,7 @@ import { Ship, MapPin, Clock, Package } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { getTranslation } from "@/lib/i18n/translations";
 
-interface LogisticsInfo {
+export interface LogisticsInfo {
   ports?: string[];
   shipping_methods?: string[];
   delivery_time?: string;

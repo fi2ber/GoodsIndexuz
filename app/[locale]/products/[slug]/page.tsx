@@ -18,7 +18,7 @@ import { ProductImageGallery } from "@/components/product/ProductImageGallery";
 import { ProductQuickActions } from "@/components/product/ProductQuickActions";
 import { ProductSeasonality } from "@/components/product/ProductSeasonality";
 import { ProductCertificates, type Certificate } from "@/components/product/ProductCertificates";
-import { ProductLogisticsInfo } from "@/components/product/ProductLogisticsInfo";
+import { ProductLogisticsInfo, type LogisticsInfo } from "@/components/product/ProductLogisticsInfo";
 import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { ProductStructuredData } from "@/components/product/ProductStructuredData";
 import { Settings } from "lucide-react";
@@ -148,15 +148,19 @@ export default async function ProductPage({
   const certificates = (locale === "ru" 
     ? (Array.isArray(product.certificates_ru) ? product.certificates_ru : [])
     : (Array.isArray(product.certificates_en) ? product.certificates_en : [])) as unknown as Certificate[];
-  const seasonality = Array.isArray(product.seasonality) 
+  const seasonality = (Array.isArray(product.seasonality) 
     ? product.seasonality.filter((m): m is number => typeof m === 'number' && m >= 1 && m <= 12)
-    : [];
-  const logisticsInfo = locale === "ru" 
+    : []) as number[];
+
+  const logisticsInfo = (locale === "ru" 
     ? (product.logistics_info_ru && typeof product.logistics_info_ru === 'object' ? product.logistics_info_ru : null)
-    : (product.logistics_info_en && typeof product.logistics_info_en === 'object' ? product.logistics_info_en : null);
-  const faqs = locale === "ru"
-    ? (Array.isArray(product.faqs_ru) ? product.faqs_ru : [])
-    : (Array.isArray(product.faqs_en) ? product.faqs_en : []);
+    : (product.logistics_info_en && typeof product.logistics_info_en === 'object' ? product.logistics_info_en : null)) as unknown as LogisticsInfo | null;
+
+  const rawFaqs = locale === "ru" ? product.faqs_ru : product.faqs_en;
+  const faqs = (Array.isArray(rawFaqs) ? rawFaqs : []) as unknown as { question: string; answer: string }[];
+
+  const rawPackaging = product.packaging_options;
+  const packaging = (Array.isArray(rawPackaging) ? rawPackaging : []) as unknown as string[];
 
   // Market Index data
   // #region agent log
@@ -251,7 +255,7 @@ export default async function ProductPage({
               variety={variety}
               origin={origin}
               moq={product.moq}
-              packaging={product.packaging_options as string[] | null}
+              packaging={packaging}
               shelfLife={product.shelf_life}
               locale={locale}
             />
@@ -331,9 +335,7 @@ export default async function ProductPage({
         {/* Detailed Information - Accordion */}
         {(processingMethod ||
           product.export_readiness ||
-          (product.packaging_options &&
-            Array.isArray(product.packaging_options) &&
-            product.packaging_options.length > 0)) && (
+          (packaging && packaging.length > 0)) && (
           <div className="max-w-4xl">
             <Accordion type="single" collapsible className="w-full">
               {processingMethod && (
@@ -352,16 +354,14 @@ export default async function ProductPage({
                 </AccordionItem>
               )}
 
-              {product.packaging_options &&
-                Array.isArray(product.packaging_options) &&
-                product.packaging_options.length > 0 && (
+              {packaging && packaging.length > 0 && (
                   <AccordionItem value="packaging-details">
                     <AccordionTrigger className="text-lg">
                       {t("products.packaging")}
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                        {product.packaging_options.map((pkg: string, idx: number) => (
+                        {packaging.map((pkg: string, idx: number) => (
                           <li key={idx}>{pkg}</li>
                         ))}
                       </ul>
