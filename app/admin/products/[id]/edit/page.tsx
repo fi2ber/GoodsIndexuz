@@ -23,40 +23,47 @@ export default async function EditProductPage({
   }
 
   // Убеждаемся, что image_urls правильно парсится как массив строк
+  let imageUrls: string[] = [];
   if (product.image_urls) {
-    if (typeof product.image_urls === 'string') {
+    let parsedImages = product.image_urls;
+    if (typeof parsedImages === 'string') {
       try {
-        product.image_urls = JSON.parse(product.image_urls);
+        parsedImages = JSON.parse(parsedImages);
       } catch {
-        product.image_urls = [];
+        parsedImages = [];
       }
-    } else if (!Array.isArray(product.image_urls)) {
-      product.image_urls = [];
     }
-    // Фильтруем только строки
-    product.image_urls = product.image_urls.filter((url): url is string => typeof url === 'string');
-  } else {
-    product.image_urls = [];
+    
+    if (Array.isArray(parsedImages)) {
+      imageUrls = parsedImages.filter((url): url is string => typeof url === 'string');
+    }
   }
 
   // Убеждаемся, что calibers правильно парсится как массив строк
+  let caliberList: string[] = [];
   if (product.calibers) {
-    if (typeof product.calibers === 'string') {
+    let parsedCalibers = product.calibers;
+    if (typeof parsedCalibers === 'string') {
       try {
-        product.calibers = JSON.parse(product.calibers);
+        parsedCalibers = JSON.parse(parsedCalibers);
       } catch {
-        product.calibers = [];
+        parsedCalibers = [];
       }
-    } else if (!Array.isArray(product.calibers)) {
-      product.calibers = [];
     }
-    // Фильтруем только строки
-    product.calibers = product.calibers.filter((caliber): caliber is string => typeof caliber === 'string');
-  } else {
-    product.calibers = [];
+    
+    if (Array.isArray(parsedCalibers)) {
+      caliberList = parsedCalibers.filter((caliber): caliber is string => typeof caliber === 'string');
+    }
   }
 
   const categories = await getAllCategories();
+
+  // Create a clean product object for the form
+  const cleanProduct = {
+    ...product,
+    image_urls: imageUrls,
+    calibers: caliberList,
+  };
 
   return (
     <div className="space-y-8">
@@ -65,7 +72,7 @@ export default async function EditProductPage({
         <p className="text-muted-foreground">Update product information</p>
       </div>
 
-      <ProductForm product={product} categories={categories} />
+      <ProductForm product={cleanProduct as any} categories={categories} />
     </div>
   );
 }
