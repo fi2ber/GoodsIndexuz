@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { UpdateInquiryStatus } from "@/components/admin/UpdateInquiryStatus";
 import { ExternalLink } from "lucide-react";
+import type { InquiryStatus } from "@/lib/constants";
 
 export default async function InquiryDetailPage({
   params,
@@ -23,7 +24,7 @@ export default async function InquiryDetailPage({
     customer_company: string | null;
     message: string | null;
     telegram_sent: boolean;
-    status: string;
+    status: InquiryStatus;
     created_at: string;
     updated_at: string;
     products: {
