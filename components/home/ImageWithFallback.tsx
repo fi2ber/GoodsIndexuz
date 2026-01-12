@@ -14,6 +14,8 @@ interface ImageWithFallbackProps {
   width?: number;
   height?: number;
   placeholderText?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
 export function ImageWithFallback({
@@ -26,6 +28,8 @@ export function ImageWithFallback({
   width,
   height,
   placeholderText,
+  style,
+  onClick,
 }: ImageWithFallbackProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
@@ -64,6 +68,8 @@ export function ImageWithFallback({
         className={`${className} ${imageLoading ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
         sizes={sizes}
         priority={priority}
+        style={style}
+        onClick={onClick}
         onError={() => {
           setImageError(true);
           setImageLoading(false);
